@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Feedback Form</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      min-height: 100vh;
+
+      background:
+        linear-gradient(
+          rgba(20, 27, 35, 0.78),
+          rgba(20, 27, 35, 0.9)
+        ),
+        url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80");
+
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+
+      color: #263238;
+      padding: 60px 20px;
+    }
+
+    header {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+    }
+
+    header p {
+      max-width: 550px;
+      margin: auto;
+      line-height: 1.7;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    main {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 20px;
+      padding: 40px;
+
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.25);
+
+      backdrop-filter: blur(10px);
+    }
+
+    fieldset {
+      border: none;
+      border-bottom: 1px solid #e8e8e8;
+
+      padding: 0 0 32px;
+      margin-bottom: 32px;
+    }
+
+    legend {
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #18232c;
+
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+
+      margin-bottom: 8px;
+      color: #455a64;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+
+      padding: 14px 16px;
+      margin-bottom: 20px;
+
+      font-family: inherit;
+      font-size: 0.9rem;
+
+      color: #263238;
+      background: #f7f8f9;
+
+      border: 1px solid #dde2e5;
+      border-radius: 10px;
+
+      outline: none;
+
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #a4adb3;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      background: white;
+      border-color: #b28b54;
+
+      box-shadow:
+        0 0 0 4px rgba(178, 139, 84, 0.12);
+    }
+
+    /* Radio e Checkbox */
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      accent-color: #b28b54;
+      width: 17px;
+      height: 17px;
+
+      margin-right: 7px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] + label,
+    input[type="checkbox"] + label {
+      display: inline-block;
+      margin-right: 18px;
+      margin-bottom: 15px;
+
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Select */
+
+    select {
+      cursor: pointer;
+    }
+
+    /* Comentários */
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    /* Botão */
+
+    button {
+      width: 100%;
+
+      border: none;
+      border-radius: 10px;
+
+      padding: 16px;
+
+      background: #b28b54;
+      color: white;
+
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+
+      letter-spacing: 0.5px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
+    }
+
+    button:hover {
+      background: #987342;
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 10px 25px rgba(178, 139, 84, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    /* Responsividade */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 40px 15px;
+      }
+
+      form {
+        padding: 28px 22px;
+        border-radius: 16px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <h1>Hotel Feedback Form</h1>
+
+    <p>
+      Thank you for staying with us. Please provide feedback
+      on your recent stay.
+    </p>
+
+  </header>
+
+  <main>
+
+    <form
+      method="POST"
+      action="https://hotel-feedback.freecodecamp.org"
+    >
+
+      <fieldset>
+
+        <legend>Personal Information</legend>
+
+        <label for="full-name">
+          Name (required):
+        </label>
+
+        <input
+          type="text"
+          id="full-name"
+          name="name"
+          placeholder="e.g., John Doe"
+          required
+        >
+
+        <label for="email">
+          Email address (required):
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="example@email.com"
+          required
+        >
+
+        <label for="age">
+          Age (optional):
+        </label>
+
+        <input
+          type="number"
+          name="age"
+          id="age"
+          min="3"
+          max="100"
+        >
+
+      </fieldset>
+
+
+      <fieldset>
+
+        <legend>
+          Was this your first time at our hotel?
+        </legend>
+
+        <input
+          id="yes-option"
+          type="radio"
+          name="hotel-stay"
+          value="yes"
+        >
+
+        <label for="yes-option">
+          Yes
+        </label>
+
+        <input
+          id="no-option"
+          type="radio"
+          name="hotel-stay"
+          value="no"
+        >
+
+        <label for="no-option">
+          No
+        </label>
+
+      </fieldset>
+
+
+      <fieldset>
+
+        <legend>
+          Why did you choose to stay at our hotel?
+          (Check all that apply)
+        </legend>
+
+        <input
+          type="checkbox"
+          id="ads"
+          name="choice"
+          value="ads"
+        >
+
+        <label for="ads">
+          Social Media Ads
+        </label>
+
+
+        <input
+          type="checkbox"
+          id="recommendation"
+          name="choice"
+          value="recommendation"
+        >
+
+        <label for="recommendation">
+          Personal Recommendation
+        </label>
+
+
+        <input
+          type="checkbox"
+          id="location"
+          name="choice"
+          value="location"
+        >
+
+        <label for="location">
+          Location
+        </label>
+
+
+        <input
+          checked
+          type="checkbox"
+          id="reputation"
+          name="choice"
+          value="reputation"
+        >
+
+        <label for="reputation">
+          Reputation
+        </label>
+
+
+        <input
+          type="checkbox"
+          id="price"
+          name="choice"
+          value="price"
+        >
+
+        <label for="price">
+          Price
+        </label>
+
+      </fieldset>
+
+
+      <fieldset>
+
+        <legend>Ratings</legend>
+
+        <label for="service">
+          How was the service?
+        </label>
+
+        <select
+          name="service"
+          id="service"
+        >
+
+          <option value="poor">
+            Poor
+          </option>
+
+          <option value="satisfactory">
+            Satisfactory
+          </option>
+
+          <option value="good">
+            Good
+          </option>
+
+          <option value="very-good">
+            Very Good
+          </option>
+
+          <option selected value="excellent">
+            Excellent
+          </option>
+
+        </select>
+
+
+        <label for="food">
+          How was the food?
+        </label>
+
+        <select
+          name="food"
+          id="food"
+        >
+
+          <option value="poor">
+            Poor
+          </option>
+
+          <option value="satisfactory">
+            Satisfactory
+          </option>
+
+          <option value="good">
+            Good
+          </option>
+
+          <option value="very-good">
+            Very Good
+          </option>
+
+          <option selected value="excellent">
+            Excellent
+          </option>
+
+        </select>
+
+      </fieldset>
+
+
+      <label for="comments">
+        Other Comments?
+      </label>
+
+      <textarea
+        name="comments"
+        id="comments"
+        placeholder="Tell us more about your experience..."
+      ></textarea>
+
+
+      <button type="submit">
+        Submit Feedback
+      </button>
+
+    </form>
+
+  </main>
+
+</body>
+
+</html>
